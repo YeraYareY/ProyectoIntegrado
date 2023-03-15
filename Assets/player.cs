@@ -10,7 +10,7 @@ public class player : MonoBehaviour
     //MOVIMIENTO
     private float movimientoHorizontal = 0f;
     private float velocidadMovimiento = 500f; 
-    private float suavizadoMovimiento = 0.3f;
+    private float suavizadoMovimiento = 0.05f;
 
     private Vector3 velocidad = Vector3.zero;
 
