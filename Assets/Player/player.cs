@@ -6,11 +6,14 @@ public class player : MonoBehaviour
 {
     
     private Rigidbody2D rb2D;
-
+    public Animator animator;
     //MOVIMIENTO
     private float movimientoHorizontal = 0f;
     private float velocidadMovimiento = 500f; 
-    private float suavizadoMovimiento = 0.05f;
+
+    private float movimientoSalto=0f;
+    //Antes a 0.05 para suavizarlo sin que se note
+    private float suavizadoMovimiento = 0;
 
     private Vector3 velocidad = Vector3.zero;
 
@@ -23,19 +26,28 @@ public class player : MonoBehaviour
     public Vector3 dimensionesCaja;
     private bool enSuelo;
     private bool salto=false;
+    public float distanceToGround;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        animator=GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        movimientoHorizontal= Input.GetAxisRaw("Horizontal") * velocidadMovimiento;
 
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
+        {
+            distanceToGround = hit.distance;
+        }
+        Debug.Log(distanceToGround);
+
+        movimientoHorizontal= Input.GetAxisRaw("Horizontal") * velocidadMovimiento;
+        movimientoSalto= Input.GetAxisRaw("Jump");
         if(Input.GetButtonDown("Jump")){
             salto = true;
         }
@@ -44,7 +56,21 @@ public class player : MonoBehaviour
     private void Mover(float mover, bool saltar){
         Vector3 velocidadObjetivo = new Vector2(mover, rb2D.velocity.y);
         rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, velocidadObjetivo, ref velocidad, suavizadoMovimiento);
-
+        // float inputMovimiento = Input.GetAxis("Horizontal");
+        // float inputSalto = Input.GetButtonDown("Jump");
+        if(movimientoHorizontal* velocidadMovimiento!=0 && saltar==false){
+            animator.SetBool("isRun",true);
+            animator.SetBool("isWait",false);
+            animator.SetBool("isJump",false);
+        }else if(movimientoHorizontal* velocidadMovimiento==0 && saltar==false){
+            animator.SetBool("isRun",false);
+            animator.SetBool("isWait",true);
+            animator.SetBool("isJump",false);
+        }else if(saltar==true){
+            animator.SetBool("isRun",false);
+            animator.SetBool("isWait",false);
+            animator.SetBool("isJump",true);
+        }
         if(mover > 0 && !mirandoDerecha){
             Girar();
         }else if(mover < 0 && mirandoDerecha){
