@@ -20,6 +20,8 @@ public class player : MonoBehaviour
 
     private bool mirandoDerecha = true;
 
+    //Variables Basicas
+    private int vida = 3;
     //SALTO
     public float fuerzaSalto;
     public LayerMask queEsSuelo;
@@ -40,7 +42,7 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
         {
             distanceToGround = hit.distance;
