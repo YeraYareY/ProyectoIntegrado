@@ -12,6 +12,7 @@ public class player : MonoBehaviour
     private float velocidadMovimiento = 500f; 
 
     private float movimientoSalto=0f;
+    private bool movimientoAtacar;
     //Antes a 0.05 para suavizarlo sin que se note
     private float suavizadoMovimiento = 0;
 
@@ -44,12 +45,21 @@ public class player : MonoBehaviour
         {
             distanceToGround = hit.distance;
         }
-        Debug.Log(distanceToGround);
+  
 
+        //Detecta tecla
         movimientoHorizontal= Input.GetAxisRaw("Horizontal") * velocidadMovimiento;
         movimientoSalto= Input.GetAxisRaw("Jump");
-        if(Input.GetButtonDown("Jump")){
+        
+        
+       if(Input.GetButtonDown("Jump")){
             salto = true;
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
+    // Aquí colocas el código que quieres que se ejecute cuando se detecte el click izquierdo
+            movimientoAtacar=true;
+        
         }
     }
 
@@ -58,18 +68,28 @@ public class player : MonoBehaviour
         rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, velocidadObjetivo, ref velocidad, suavizadoMovimiento);
         // float inputMovimiento = Input.GetAxis("Horizontal");
         // float inputSalto = Input.GetButtonDown("Jump");
+        
         if(movimientoHorizontal* velocidadMovimiento!=0 && saltar==false){
             animator.SetBool("isRun",true);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);
-        }else if(movimientoHorizontal* velocidadMovimiento==0 && saltar==false){
+         
+        }if(movimientoHorizontal* velocidadMovimiento==0 && saltar==false){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",true);
             animator.SetBool("isJump",false);
-        }else if(saltar==true){
+            animator.SetBool("isAttack",false);
+        }if(saltar==true){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",true);
+        }if(movimientoAtacar==true){
+            Debug.Log("Attca");
+            animator.SetBool("isRun",false);
+            animator.SetBool("isWait",false);
+            animator.SetBool("isJump",false);
+            animator.SetBool("isAttack",true);
+            //movimientoAtacar=false;
         }
         if(mover > 0 && !mirandoDerecha){
             Girar();
@@ -97,6 +117,7 @@ public class player : MonoBehaviour
         enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionesCaja, 0f, queEsSuelo);
 
         salto = false;
+        
     }
 
 }
