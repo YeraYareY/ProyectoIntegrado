@@ -80,7 +80,6 @@ public class player : MonoBehaviour
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",true);
             animator.SetBool("isJump",false);
-            animator.SetBool("isAttack",false);
         }if(saltar==true){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);

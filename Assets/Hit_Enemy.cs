@@ -13,7 +13,7 @@ public class Hit_Enemy : MonoBehaviour
     {
         if (colision.CompareTag("Player"))
         {
-            Debug.Log("Daño");
+            Debug.Log("Dao");
         }
     }
     // Update is called once per frame
