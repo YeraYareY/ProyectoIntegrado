@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Coleccionable
   - Enemigo
+  - Bala
   layers:
   - Default
   - TransparentFX
