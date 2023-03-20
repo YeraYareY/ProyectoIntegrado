@@ -21,25 +21,38 @@ public class shot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+            float calc=player_pos.position.x-this.transform.position.x;
+            Debug.Log(calc);
+
         #region 
-        if(Vector2.Distance(transform.position, player_pos.position)>distancia_frenado){
-            transform.position=Vector2.MoveTowards(transform.position,player_pos.position,speed*Time.deltaTime);
-        }
-        if(Vector2.Distance(transform.position, player_pos.position)<distancia_retraso){
-            transform.position=Vector2.MoveTowards(transform.position,player_pos.position,-speed*Time.deltaTime);
-        }
-        if(Vector2.Distance(transform.position, player_pos.position)<distancia_frenado && Vector2.Distance(transform.position, player_pos.position)>distancia_retraso){
-            transform.position=transform.position;
-        }
+        // if(Vector2.Distance(transform.position, player_pos.position)>distancia_frenado){
+        //    // transform.position=Vector2.MoveTowards(transform.position,player_pos.position,speed*Time.deltaTime);
+        //     transform.Translate(Vector2.right * speed * Time.deltaTime);
+        // }
+        // if(Vector2.Distance(transform.position, player_pos.position)<distancia_retraso){
+        //     transform.Translate(Vector2.left * speed * Time.deltaTime);
+        // }
+        // if(Vector2.Distance(transform.position, player_pos.position)<distancia_frenado && Vector2.Distance(transform.position, player_pos.position)>distancia_retraso){
+        //     transform.position=transform.position;
+        // }
         #endregion
 
         //flip
         #region 
 
-        if(player_pos.position.x>this.transform.position.x){
+        if(player_pos.position.x>this.transform.position.x && player_pos.position.x-this.transform.position.x >= 8){
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
             this.transform.localScale=new Vector2(1,1);
-        }else{
-            this.transform.localScale=new Vector2(-1,1);
+        }else if(player_pos.position.x>this.transform.position.x && player_pos.position.x-this.transform.position.x <= 4 || player_pos.position.x-this.transform.position.x >= 0){
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+        
+        if(player_pos.position.x<this.transform.position.x && player_pos.position.x-this.transform.position.x <= -8){
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+            //this.transform.localScale=new Vector2(-1,1);
+        }else if(player_pos.position.x<this.transform.position.x && player_pos.position.x-this.transform.position.x >= -4 || player_pos.position.x-this.transform.position.x <= 0){
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
 
         #endregion

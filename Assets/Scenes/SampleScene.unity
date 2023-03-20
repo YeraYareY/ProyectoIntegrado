@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_pos: {fileID: 0}
-  speed: 6
+  speed: 2
   distancia_frenado: 8
   distancia_retraso: 6
   punto_instancia: {fileID: 412588580}
