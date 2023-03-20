@@ -10,8 +10,14 @@ public class shot : MonoBehaviour
     public float distancia_frenado=8f;
     public float distancia_retraso=6f;
 
+    public bool miraDerecha = false;
+    public bool miraIzquierda = false;
+
+    //Bala
     public Transform punto_instancia;
-    public GameObject bala;
+    public GameObject balaPrefab;
+    public float balaSpeed = 10f;
+    public float balaDestroyDistance = 50f;
     private float tiempo;
     void Start()
     {
@@ -43,13 +49,17 @@ public class shot : MonoBehaviour
 
         if(player_pos.position.x>this.transform.position.x && player_pos.position.x-this.transform.position.x >= 8){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-            this.transform.localScale=new Vector2(1,1);
+            miraDerecha=true;
+            miraIzquierda=false;
+            //this.transform.localScale=new Vector2(1,1);
         }else if(player_pos.position.x>this.transform.position.x && player_pos.position.x-this.transform.position.x <= 4 || player_pos.position.x-this.transform.position.x >= 0){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
         
         if(player_pos.position.x<this.transform.position.x && player_pos.position.x-this.transform.position.x <= -8){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
+            miraDerecha=false;
+            miraIzquierda=true;
             //this.transform.localScale=new Vector2(-1,1);
         }else if(player_pos.position.x<this.transform.position.x && player_pos.position.x-this.transform.position.x >= -4 || player_pos.position.x-this.transform.position.x <= 0){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -60,8 +70,19 @@ public class shot : MonoBehaviour
 
         tiempo+=Time.deltaTime;
         if(tiempo>=2){
-           Instantiate(bala,punto_instancia.position,Quaternion.identity);
-           tiempo=0;
+
+            GameObject bala = Instantiate(balaPrefab, punto_instancia.position, Quaternion.identity);
+            Rigidbody2D balaRb = bala.GetComponent<Rigidbody2D>();
+            if(balaRb != null){
+                if(miraDerecha){
+                    // aplicar fuerza a la bala para moverla
+                    balaRb.AddForce(transform.right * balaSpeed, ForceMode2D.Impulse);
+                }else if(miraIzquierda){
+                    // aplicar fuerza a la bala para moverla
+                    balaRb.AddForce(-transform.right * balaSpeed, ForceMode2D.Impulse);
+                }
+            }
+            tiempo = 0;
         }
 
     }
