@@ -23,7 +23,7 @@ public class ComportamientoBala : MonoBehaviour
     {
         if(colision.CompareTag("Player")){
             Debug.Log("COLISION");
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -32,7 +32,7 @@ public class ComportamientoBala : MonoBehaviour
     {
         miraDerecha=claseShot.miraDerecha;
         miraIzquierda=claseShot.miraIzquierda;
-
+        
         tiempo+=Time.deltaTime;
         if(tiempo>=2){
 
@@ -47,6 +47,14 @@ public class ComportamientoBala : MonoBehaviour
                     balaRb.AddForce(-transform.right * balaSpeed, ForceMode2D.Impulse);
                 }
             }
+
+        CircleCollider2D balaCollider = bala.GetComponent<CircleCollider2D>();
+        if (balaCollider == null)
+        {
+            balaCollider = bala.AddComponent<CircleCollider2D>();
+            balaCollider.radius = 0.1f; // ajustar el radio del collider
+        }
+
             tiempo = 0;
         }
     }

@@ -24,6 +24,8 @@ public class shot : MonoBehaviour
         player_pos=GameObject.Find("Player").transform;   
     }
 
+
+    
     // Update is called once per frame
     void Update()
     {
@@ -49,41 +51,53 @@ public class shot : MonoBehaviour
 
         if(player_pos.position.x>this.transform.position.x && player_pos.position.x-this.transform.position.x >= 8){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-            miraDerecha=true;
-            miraIzquierda=false;
+            
             //this.transform.localScale=new Vector2(1,1);
         }else if(player_pos.position.x>this.transform.position.x && player_pos.position.x-this.transform.position.x <= 4 || player_pos.position.x-this.transform.position.x >= 0){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
+            miraDerecha=true;
+            miraIzquierda=false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
         
         if(player_pos.position.x<this.transform.position.x && player_pos.position.x-this.transform.position.x <= -8){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
-            miraDerecha=false;
-            miraIzquierda=true;
+            
             //this.transform.localScale=new Vector2(-1,1);
         }else if(player_pos.position.x<this.transform.position.x && player_pos.position.x-this.transform.position.x >= -4 || player_pos.position.x-this.transform.position.x <= 0){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
+            miraDerecha=false;
+            miraIzquierda=true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 
         #endregion
 
 
-        tiempo+=Time.deltaTime;
-        if(tiempo>=2){
-
-            GameObject bala = Instantiate(balaPrefab, punto_instancia.position, Quaternion.identity);
-            Rigidbody2D balaRb = bala.GetComponent<Rigidbody2D>();
-            if(balaRb != null){
-                if(miraDerecha){
-                    // aplicar fuerza a la bala para moverla
-                    balaRb.AddForce(transform.right * balaSpeed, ForceMode2D.Impulse);
-                }else if(miraIzquierda){
-                    // aplicar fuerza a la bala para moverla
-                    balaRb.AddForce(-transform.right * balaSpeed, ForceMode2D.Impulse);
-                }
-            }
-            tiempo = 0;
+        tiempo += Time.deltaTime;
+if (tiempo >= 2)
+{
+    GameObject bala = Instantiate(balaPrefab, punto_instancia.position, Quaternion.identity);
+    Rigidbody2D balaRb = bala.GetComponent<Rigidbody2D>();
+    if (balaRb != null)
+    {
+        if (miraDerecha)
+        {
+            // aplicar fuerza a la bala para moverla
+            balaRb.AddForce(transform.right * balaSpeed, ForceMode2D.Impulse);
         }
+        else if (miraIzquierda)
+        {
+            // aplicar fuerza a la bala para moverla
+            balaRb.AddForce(-transform.right * balaSpeed, ForceMode2D.Impulse);
+        }
+    }
+
+    // destruir la bala después de cierta distancia
+    Destroy(bala, balaDestroyDistance / balaSpeed);
+
+    tiempo = 0;
+}
 
     }
 }
