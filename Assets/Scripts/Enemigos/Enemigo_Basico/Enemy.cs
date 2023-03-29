@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         objetivo = GameObject.Find("Player");
     }
 
@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
 
 
             //animator.SetBool("isRun",false)
+            animator.SetBool("moverse",false);
             cronometro += 1 * Time.deltaTime;
             if (cronometro >= 4)
             {
@@ -45,6 +46,8 @@ public class Enemy : MonoBehaviour
             {
                 case 0:
                     //bool caminar =false
+                    animator.SetBool("quieto",true);
+
                     break;
                 case 1:
                     direccion = Random.Range(0, 2);
@@ -63,6 +66,8 @@ public class Enemy : MonoBehaviour
                             break;
                     }
                     //activar animacion caminar
+                    animator.SetBool("moverse",true);
+
                     break;
             }
            
@@ -74,20 +79,23 @@ public class Enemy : MonoBehaviour
                 if (transform.position.x < objetivo.transform.position.x)
                 {
                     //animacion caminar falsa y correr verdadera
+                    animator.SetBool("quieto",false);
+                    animator.SetBool("moverse",true);
                     transform.Translate(Vector3.right * speed_run * Time.deltaTime);
                     transform.rotation = Quaternion.Euler(0, 0, 0);
                     //animacion atacar falsa
+                    animator.SetBool("atacar",false);
+
                 }
                 else
                 {
                     //animacion caminar falsa y correr verdadera
+                    animator.SetBool("quieto",false);
+                    animator.SetBool("moverse",true);
                     transform.Translate(Vector3.right * speed_run * Time.deltaTime);
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                     //animacion atacar falsa
-
-
-
-
+                    animator.SetBool("atacar",false);
                 }
             }
             else
@@ -103,6 +111,8 @@ public class Enemy : MonoBehaviour
                         transform.rotation = Quaternion.Euler(0, 180, 0);
                     }
                     //false animacion correr y andar
+                    animator.SetBool("moverse",false);
+
                 }
             }
                 
@@ -114,6 +124,9 @@ public class Enemy : MonoBehaviour
     public void Final_Ani()
     {
         //animacion atacar falsa
+        animator.SetBool("atacar",false);
+
+
         atacando = false;
         rango.GetComponent<BoxCollider2D>().enabled = true;
 
