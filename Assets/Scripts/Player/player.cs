@@ -85,7 +85,7 @@ public class player : MonoBehaviour
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",true);
         }if(movimientoAtacar==true){
-            Debug.Log("Attca");
+            //Debug.Log("Attca");
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);

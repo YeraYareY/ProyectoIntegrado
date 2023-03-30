@@ -31,7 +31,7 @@ public class shot : MonoBehaviour
     {
 
             float calc=player_pos.position.x-this.transform.position.x;
-            Debug.Log(calc);
+            //Debug.Log(calc);
 
         #region 
         // if(Vector2.Distance(transform.position, player_pos.position)>distancia_frenado){
