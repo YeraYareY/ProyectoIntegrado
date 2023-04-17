@@ -7,11 +7,14 @@ public class Interaccion : MonoBehaviour
 
     bool enColision = false;
     public string mensaje;
+    public GameObject panelTienda;
+
     //public Text mensaje;
     // Start is called before the first frame update
     void Start()
     {
-        
+        panelTienda.SetActive(false);
+
     }
 
    
@@ -19,7 +22,9 @@ public class Interaccion : MonoBehaviour
         if (colision.CompareTag("Player")) {
             Debug.Log("Entro");
             enColision = true;
-            mensaje = "Presiona 'E' para comprar";
+            mensaje = "Presiona 'E' para comprar";            
+        }else{
+            panelTienda.SetActive(false);
         }
     }
 
@@ -28,6 +33,7 @@ public class Interaccion : MonoBehaviour
             Debug.Log("Salgo");
             enColision = false;
             mensaje = "";
+            panelTienda.SetActive(false);
         }
     }
 
@@ -37,7 +43,7 @@ public class Interaccion : MonoBehaviour
     {
         if(enColision){
                if (Input.GetKeyDown(KeyCode.E)){
-                    //Abrir tienda
+                    panelTienda.SetActive(true);
                 }
         }
   
