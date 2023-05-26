@@ -21,7 +21,7 @@ public class player : MonoBehaviour
     private bool mirandoDerecha = true;
 
     //Variables Basicas
-    private int vida = 3;
+    public int vida = 3;
     //SALTO
     public float fuerzaSalto;
     public LayerMask queEsSuelo;
