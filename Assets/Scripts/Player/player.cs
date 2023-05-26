@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    
     private Rigidbody2D rb2D;
     public Animator animator;
     //MOVIMIENTO
@@ -32,6 +31,7 @@ public class player : MonoBehaviour
     public float distanceToGround;
     public GameObject enemigo;
     public static bool golpeado;
+    public static bool pausado;
 
     // Start is called before the first frame update
     void Start()
@@ -39,20 +39,34 @@ public class player : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
     }
-
+    IEnumerator Pausar()
+    {
+        pausado=true;
+        yield return new WaitForSeconds(2);
+        pausado=false;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        golpeado=Hit_Enemy.hit;
-        if(golpeado){
-            Debug.Log("Golpeado: "+golpeado);
-            vida--;
-            animator.SetTrigger("Golpe");
-            Debug.Log("animado");
-            golpeado=false;
+        if(!pausado){
+            if (Hit_Enemy.hit)
+                {
+                    
+                    vida--;
+                    if(vida>=1){
+                    animator.SetTrigger("Golpe");
 
+                    }
+                    Debug.Log(vida);
+                    Hit_Enemy.hit = false;
+                    StartCoroutine(Pausar()); // Restablecer la variable hit de Hit_Enemy a false
+                }
         }
-      
+       
+       if(vida<=0){
+            animator.SetBool("muerto",true);
+       }
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
         {
