@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CameraControler : MonoBehaviour
 {
+  
     public GameObject Jugador;
+    
     // Update is called once per frame
+    void Start(){
+       
+       
+    }
     void Update()
     {
         Vector3 position=transform.position;

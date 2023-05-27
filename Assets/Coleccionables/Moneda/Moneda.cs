@@ -7,6 +7,7 @@ public class Moneda : MonoBehaviour
     // Start is called before the first frame update
     public int valor=100;
     public GameManager gameManager;
+    public AudioSource sonido;
     void Start()
     {
         
@@ -16,11 +17,16 @@ public class Moneda : MonoBehaviour
     {
         if (colision.CompareTag("Player"))
         {
+            sonido.Play();
             gameManager.sumarPuntos(valor);
-            Destroy(this.gameObject);
+            Invoke("DestruirObjeto", 1);
+            
         }
     }
 
+    void DestruirObjeto(){
+        Destroy(this.gameObject);
+    }
     // Update is called once per frame
     void Update()
     {

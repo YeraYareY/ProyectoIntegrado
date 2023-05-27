@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hit_Enemy : MonoBehaviour
 {
     public static bool hit;
+    public bool pausado;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,35 +15,23 @@ public class Hit_Enemy : MonoBehaviour
     {
         if (colision.CompareTag("Player"))
         {
-            hit=true;
-            Debug.Log(hit);
-            
-            if(hit){
-                if (hit)
-                {
-                    StartCoroutine(Pausar());
-                }
-                
-                Debug.Log(hit);
-                
-
+            Debug.Log(pausado);
+            if(!pausado){
+                hit=true;
             }
+     
         }
         
             
 
     }
-    IEnumerator Pausar()
-    {
-        Debug.Log("Pausando...");
-        yield return new WaitForSeconds(2);
-        Debug.Log("La pausa ha terminado.");
-        hit=player.golpeado;
-    }
+
+    
+   
     
     // Update is called once per frame
     void Update()
     {
-        
+     pausado=player.pausado;
     }
 }

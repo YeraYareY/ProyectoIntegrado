@@ -26,6 +26,12 @@ public class Enemy : MonoBehaviour
         objetivo = GameObject.Find("Player");
     }
 
+    void OnTriggerEnter2D(Collider2D col){
+        if(col.CompareTag("Player")){
+             animator.SetBool("atacar",true);
+             animator.SetBool("moverse",false);
+        }
+    }
 
     public void Comportamiento()
     {

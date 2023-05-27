@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    
     private Rigidbody2D rb2D;
     public Animator animator;
     //MOVIMIENTO
@@ -15,7 +14,8 @@ public class player : MonoBehaviour
     private bool movimientoAtacar;
     //Antes a 0.05 para suavizarlo sin que se note
     private float suavizadoMovimiento = 0;
-
+    public ParticleSystem particulas;
+    public ParticleSystem particulasMuerte;
     private Vector3 velocidad = Vector3.zero;
 
     private bool mirandoDerecha = true;
@@ -32,27 +32,51 @@ public class player : MonoBehaviour
     public float distanceToGround;
     public GameObject enemigo;
     public static bool golpeado;
-
+    public static bool pausado;
+    public AudioSource saltoSonido;
+    public bool saltoReproducido;
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
+        
     }
-
+  
+    IEnumerator Pausar()
+    {
+        pausado=true;
+        yield return new WaitForSeconds(2);
+        pausado=false;
+    }
+    
+     private void OcultarObjeto()
+    {
+        // Ocultar el objeto
+        gameObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
-        golpeado=Hit_Enemy.hit;
-        if(golpeado){
-            Debug.Log("Golpeado: "+golpeado);
-            vida--;
-            animator.SetTrigger("Golpe");
-            Debug.Log("animado");
-            golpeado=false;
+        if(!pausado){
+            if (Hit_Enemy.hit)
+                {
+                    
+                    vida--;
+                    if(vida>=1){
+                    animator.SetTrigger("Golpe");
 
+                    }
+                    Debug.Log(vida);
+                    Hit_Enemy.hit = false;
+                    StartCoroutine(Pausar()); // Restablecer la variable hit de Hit_Enemy a false
+                }
         }
-      
+       
+       if(vida<=0){
+            particulasMuerte.Play();
+            Invoke("OcultarObjeto", 1);
+       }
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
         {
@@ -86,15 +110,22 @@ public class player : MonoBehaviour
             animator.SetBool("isRun",true);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);
+            
          
         }if(movimientoHorizontal* velocidadMovimiento==0 && saltar==false){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",true);
             animator.SetBool("isJump",false);
+            
         }if(saltar==true){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",true);
+            particulas.Play();
+            saltoSonido.Play();
+            saltoReproducido=true;
+        
+          
         }if(movimientoAtacar==true){
             //Debug.Log("Attca");
             animator.SetBool("isRun",false);
@@ -120,6 +151,7 @@ public class player : MonoBehaviour
         Vector3 escala = transform.localScale;
         escala.x *= -1;
         transform.localScale = escala;
+        particulas.Play();
 
     }
 
