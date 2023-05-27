@@ -11029,6 +11029,7 @@ GameObject:
   - component: {fileID: 412588583}
   - component: {fileID: 412588582}
   - component: {fileID: 412588581}
+  - component: {fileID: 412588585}
   m_Layer: 0
   m_Name: Enemigo_Distancia
   m_TagString: Enemigo
@@ -11044,7 +11045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412588579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.26, y: -1.94, z: 121.618225}
+  m_LocalPosition: {x: -16.37, y: -1.45, z: 121.618225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1517396388}
@@ -11107,7 +11108,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06551719, y: -0.9991379}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -11118,7 +11119,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.3103447, y: 1.4258618}
   m_EdgeRadius: 0
 --- !u!212 &412588584
 SpriteRenderer:
@@ -11161,7 +11162,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.9433962, g: 0.18155923, b: 0.18155923, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11171,6 +11172,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &412588585
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412588579}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccee253ff083e9e45ac8d4d553de6318, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &413330272
 GameObject:
   m_ObjectHideFlags: 0
@@ -18502,6 +18524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 733977355}
   - component: {fileID: 733977356}
+  - component: {fileID: 733977357}
   m_Layer: 0
   m_Name: jungle_paralax_bg1
   m_TagString: Untagged
@@ -18574,6 +18597,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &733977357
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733977354}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17416659cc086114ba98756fe74c76f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &741155338
 GameObject:
   m_ObjectHideFlags: 0
@@ -20647,6 +20691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 970969966}
   - component: {fileID: 970969967}
+  - component: {fileID: 970969968}
   m_Layer: 0
   m_Name: jungle_bg_trees (3)
   m_TagString: Untagged
@@ -20719,6 +20764,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &970969968
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970969965}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b95265f99b6d90e438df1308a89c8bab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &974203432
 GameObject:
   m_ObjectHideFlags: 0
@@ -28104,7 +28170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262093261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 90.67, y: -3.12, z: 121.618225}
+  m_LocalPosition: {x: -19.2, y: -3.3, z: 121.618225}
   m_LocalScale: {x: 2.0433, y: 2.0433, z: 1}
   m_Children:
   - {fileID: 1336802817}
@@ -28176,7 +28242,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.039271295, y: 0.6144089}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -28187,7 +28253,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3551589, y: 1.1626376}
   m_EdgeRadius: 0
 --- !u!114 &1262093265
 MonoBehaviour:
@@ -29158,6 +29224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1407279430}
   - component: {fileID: 1407279431}
+  - component: {fileID: 1407279432}
   m_Layer: 0
   m_Name: jungle_bg_trees (1)
   m_TagString: Untagged
@@ -29230,6 +29297,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1407279432
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407279429}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 557b79e368c58814abb446a466224a6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1410559892
 GameObject:
   m_ObjectHideFlags: 0
@@ -29983,7 +30071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517396387}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5220003, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0.49, y: -0.42, z: 0}
   m_LocalScale: {x: 0.4118, y: 0.4138956, z: 1}
   m_Children: []
   m_Father: {fileID: 412588580}
@@ -30092,6 +30180,7 @@ GameObject:
   - component: {fileID: 1520237982}
   - component: {fileID: 1520237985}
   - component: {fileID: 1520237984}
+  - component: {fileID: 1520237986}
   m_Layer: 0
   m_Name: bala
   m_TagString: Untagged
@@ -30158,7 +30247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520237981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.82, y: -5.59, z: 0}
+  m_LocalPosition: {x: -9.3, y: -2.77, z: 0}
   m_LocalScale: {x: 0.645, y: 0.6155, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -30201,6 +30290,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1520237986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520237981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c016f481f5df7e488dd6d0b2bfe7df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausado: 0
 --- !u!1 &1521872770
 GameObject:
   m_ObjectHideFlags: 0
@@ -30742,7 +30844,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007756084, y: 0.5541065}
+  m_Offset: {x: -0.07878235, y: 0.5541065}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -30753,7 +30855,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9352787, y: 1.1549115}
+  m_Size: {x: 1.098743, y: 1.1549115}
   m_EdgeRadius: 0
 --- !u!1 &1605459671
 GameObject:

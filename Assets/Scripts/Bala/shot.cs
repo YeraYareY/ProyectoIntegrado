@@ -9,7 +9,7 @@ public class shot : MonoBehaviour
     public float speed=6f;
     public float distancia_frenado=8f;
     public float distancia_retraso=6f;
-
+    
     public bool miraDerecha = false;
     public bool miraIzquierda = false;
 
@@ -57,6 +57,7 @@ public class shot : MonoBehaviour
             transform.Translate(Vector2.left * speed * Time.deltaTime);
             miraDerecha=true;
             miraIzquierda=false;
+          
             transform.localScale = new Vector3(1, 1, 1);
         }
         
@@ -68,6 +69,7 @@ public class shot : MonoBehaviour
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             miraDerecha=false;
             miraIzquierda=true;
+            
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
@@ -84,11 +86,13 @@ if (tiempo >= 2)
         if (miraDerecha)
         {
             // aplicar fuerza a la bala para moverla
+       
             balaRb.AddForce(transform.right * balaSpeed, ForceMode2D.Impulse);
         }
         else if (miraIzquierda)
         {
             // aplicar fuerza a la bala para moverla
+            
             balaRb.AddForce(-transform.right * balaSpeed, ForceMode2D.Impulse);
         }
     }
