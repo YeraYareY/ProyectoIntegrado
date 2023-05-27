@@ -22,6 +22,8 @@ public class player : MonoBehaviour
 
     //Variables Basicas
     public int vida = 3;
+
+    public int puntos;
     //SALTO
     public float fuerzaSalto;
     public LayerMask queEsSuelo;
@@ -110,29 +112,28 @@ public class player : MonoBehaviour
             animator.SetBool("isRun",true);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);
-            
-         
+            animator.SetBool("isAttack",false);         
         }if(movimientoHorizontal* velocidadMovimiento==0 && saltar==false){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",true);
             animator.SetBool("isJump",false);
-            
+            animator.SetBool("isAttack",false);
         }if(saltar==true){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",true);
+            animator.SetBool("isAttack",false);
             particulas.Play();
             saltoSonido.Play();
             saltoReproducido=true;
-        
-          
         }if(movimientoAtacar==true){
             //Debug.Log("Attca");
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);
             animator.SetBool("isAttack",true);
-            //movimientoAtacar=false;
+            StartCoroutine(PausaAtaque());
+            
         }
         if(mover > 0 && !mirandoDerecha){
             Girar();
@@ -145,6 +146,14 @@ public class player : MonoBehaviour
             rb2D.AddForce(new Vector2(0f, fuerzaSalto));
         }
     }
+
+IEnumerator PausaAtaque()
+{
+    Debug.Log("Pausa de ataque...");
+    yield return new WaitForSeconds(0.8f);
+    movimientoAtacar=false;
+    Debug.Log("La pausa ha terminado.");
+}
 
     private void Girar(){
         mirandoDerecha = !mirandoDerecha;

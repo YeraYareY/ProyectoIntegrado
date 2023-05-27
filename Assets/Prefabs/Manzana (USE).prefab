@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5355479116257283592}
   - component: {fileID: 3664379395339037070}
   - component: {fileID: 7792724555518458800}
+  - component: {fileID: -3987950985085680255}
   m_Layer: 5
   m_Name: Manzana (USE)
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-3987950985085680255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978175051087371064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4626e59fd8308418d950cc82d0215c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthToGive: 1
 --- !u!1 &8462927550609862973
 GameObject:
   m_ObjectHideFlags: 0

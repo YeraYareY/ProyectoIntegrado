@@ -8,6 +8,7 @@ public class Moneda : MonoBehaviour
     public int valor=100;
     public GameManager gameManager;
     public AudioSource sonido;
+    public player player;
     void Start()
     {
         
@@ -21,6 +22,9 @@ public class Moneda : MonoBehaviour
             gameManager.sumarPuntos(valor);
             Invoke("DestruirObjeto", 1);
             
+            player.puntos+=valor;
+            //gameManager.sumarPuntos(valor);
+            Destroy(this.gameObject);
         }
     }
 

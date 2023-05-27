@@ -8,6 +8,8 @@ public class Interaccion : MonoBehaviour
     bool enColision = false;
     public string mensaje;
     public GameObject panelTienda;
+    
+    public GameObject[] itemInStore;
 
     //public Text mensaje;
     // Start is called before the first frame update
