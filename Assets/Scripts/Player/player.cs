@@ -14,7 +14,8 @@ public class player : MonoBehaviour
     private bool movimientoAtacar;
     //Antes a 0.05 para suavizarlo sin que se note
     private float suavizadoMovimiento = 0;
-
+    public ParticleSystem particulas;
+    public ParticleSystem particulasMuerte;
     private Vector3 velocidad = Vector3.zero;
 
     private bool mirandoDerecha = true;
@@ -32,13 +33,16 @@ public class player : MonoBehaviour
     public GameObject enemigo;
     public static bool golpeado;
     public static bool pausado;
-
+    public AudioSource saltoSonido;
+    public bool saltoReproducido;
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
+        
     }
+  
     IEnumerator Pausar()
     {
         pausado=true;
@@ -46,6 +50,11 @@ public class player : MonoBehaviour
         pausado=false;
     }
     
+     private void OcultarObjeto()
+    {
+        // Ocultar el objeto
+        gameObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -65,7 +74,8 @@ public class player : MonoBehaviour
         }
        
        if(vida<=0){
-            animator.SetBool("muerto",true);
+            particulasMuerte.Play();
+            Invoke("OcultarObjeto", 1);
        }
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))
@@ -100,15 +110,22 @@ public class player : MonoBehaviour
             animator.SetBool("isRun",true);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);
+            
          
         }if(movimientoHorizontal* velocidadMovimiento==0 && saltar==false){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",true);
             animator.SetBool("isJump",false);
+            
         }if(saltar==true){
             animator.SetBool("isRun",false);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",true);
+            particulas.Play();
+            saltoSonido.Play();
+            saltoReproducido=true;
+        
+          
         }if(movimientoAtacar==true){
             //Debug.Log("Attca");
             animator.SetBool("isRun",false);
@@ -134,6 +151,7 @@ public class player : MonoBehaviour
         Vector3 escala = transform.localScale;
         escala.x *= -1;
         transform.localScale = escala;
+        particulas.Play();
 
     }
 
