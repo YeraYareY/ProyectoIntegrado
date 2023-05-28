@@ -12,7 +12,6 @@ public class DatabaseManager : MonoBehaviour
     void Start()
     {
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
-        AddScore("Julian", 100);
         ReadScores();
     }
 
