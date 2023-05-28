@@ -63,12 +63,27 @@ void Update(){
             });
     }
 
+
+
+
      // Método para agregar una puntuación
     public void AddScore(string user, int score)
     {
-        DatabaseReference scoreRef = databaseReference.Child("puntuacion").Child(user);
-    scoreRef.SetValueAsync(score);
 
-    Debug.Log("Puntuación agregada: " + score);
+        DatabaseReference scoreRef = databaseReference.Child("puntuacion").Child(user);
+        scoreRef.SetValueAsync(score);
+
+        Debug.Log("Puntuación agregada: " + score);
+    }
+    
+   
+
+
+    public void EditUser(string userId, string newName)
+    {
+        DatabaseReference userRef = databaseReference.Child("usuarios").Child(userId);
+        userRef.SetValueAsync(newName);
+
+        Debug.Log("Nombre de usuario editado para el ID: " + userId);
     }
 }
