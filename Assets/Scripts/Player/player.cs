@@ -109,10 +109,16 @@ public class player : MonoBehaviour
         {
             // Aplicar el ataque al enemigo
             Enemy enemyScript = enemy.GetComponent<Enemy>();
+            shot shotEnemyScript = enemy.GetComponent<shot>();
             if (enemyScript != null)
             {
                 enemyScript.TakeDamage();
             }
+            if (shotEnemyScript != null)
+        {
+            // Llamar a la función para matar al enemigo con el script "shot"
+            shotEnemyScript.TakeDamage();
+        }
         }
     }
     movimientoAtacar = true;

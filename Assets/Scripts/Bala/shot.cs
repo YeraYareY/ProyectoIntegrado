@@ -104,4 +104,9 @@ if (tiempo >= 2)
 }
 
     }
+    
+public void TakeDamage(){
+        Destroy(gameObject);
+    }
+
 }
