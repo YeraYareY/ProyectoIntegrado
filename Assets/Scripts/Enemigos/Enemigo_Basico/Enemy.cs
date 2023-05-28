@@ -153,5 +153,9 @@ public class Enemy : MonoBehaviour
         Comportamiento();
     }
 
+    public void TakeDamage(){
+        Destroy(gameObject);
+    }
+
 
 }

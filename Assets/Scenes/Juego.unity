@@ -2129,6 +2129,7 @@ MonoBehaviour:
   enemigo: {fileID: 0}
   saltoSonido: {fileID: 242127572}
   saltoReproducido: 0
+  attackRadius: 4
 --- !u!61 &242127565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2235,7 +2236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242127563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.11, y: -2.71, z: 247.14499}
+  m_LocalPosition: {x: 11.8, y: -2.71, z: 247.14499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495401921}
@@ -26545,12 +26546,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -28073,7 +28074,7 @@ GameObject:
   - component: {fileID: 1262093266}
   m_Layer: 0
   m_Name: Enemigo_Basico
-  m_TagString: Untagged
+  m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29512,7 +29513,7 @@ RectTransform:
   m_GameObject: {fileID: 1457339601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.3883, y: 2.3883, z: 2.3883}
   m_Children: []
   m_Father: {fileID: 669418395}
   m_RootOrder: 1
@@ -29544,18 +29545,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 9
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1457339604
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29900,6 +29901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d68e13984fe4004a8eb495687f4ef65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!4 &1491110810
 Transform:
   m_ObjectHideFlags: 0
@@ -33279,6 +33281,7 @@ GameObject:
   - component: {fileID: 1924774430}
   - component: {fileID: 1924774429}
   - component: {fileID: 1924774428}
+  - component: {fileID: 1924774432}
   m_Layer: 5
   m_Name: Victoria
   m_TagString: Untagged
@@ -33367,6 +33370,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1924774432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924774427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d68e13984fe4004a8eb495687f4ef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1457339603}
 --- !u!1 &1942146768
 GameObject:
   m_ObjectHideFlags: 0

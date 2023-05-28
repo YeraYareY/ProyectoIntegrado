@@ -37,6 +37,8 @@ public class player : MonoBehaviour
     public static bool pausado;
     public AudioSource saltoSonido;
     public bool saltoReproducido;
+    public float attackRadius;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,11 +97,26 @@ public class player : MonoBehaviour
             salto = true;
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-    // Aquí colocas el código que quieres que se ejecute cuando se detecte el click izquierdo
-            movimientoAtacar=true;
-        
+        if (Input.GetMouseButtonDown(0))
+{
+    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemigo");
+    Debug.Log("Número de enemigos encontrados: " + enemies.Length);
+    foreach (GameObject enemy in enemies)
+    {
+        float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+        Debug.Log("Distancia al enemigo: " + distanceToEnemy);
+        if (distanceToEnemy <= attackRadius)
+        {
+            // Aplicar el ataque al enemigo
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyScript.TakeDamage();
+            }
         }
+    }
+    movimientoAtacar = true;
+}
     }
 
     private void Mover(float mover, bool saltar){

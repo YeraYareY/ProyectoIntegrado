@@ -1,32 +1,37 @@
 using Firebase;
 using Firebase.Database;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class DatabaseManager : MonoBehaviour
 {
     DatabaseReference databaseReference;
+    public Text scoreText;
 
     void Start()
     {
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
+        AddScore("Julian", 100);
+        ReadScores();
     }
 
     void WriteScore(string userId, int score)
     {
-        DatabaseReference scoreRef = databaseReference.Child("scores").Child(userId);
+        DatabaseReference scoreRef = databaseReference.Child("puntuacion").Child(userId);
         scoreRef.SetValueAsync(score);
     }
 
 
 void Update(){
-    //AddScore(1, 100);
+    //
 }
     // Otros métodos para leer, actualizar y eliminar puntuaciones...
 
     // Ejemplo de lectura de puntuaciones:
     void ReadScores()
     {
-        FirebaseDatabase.DefaultInstance.GetReference("scores").GetValueAsync()
+        FirebaseDatabase.DefaultInstance.GetReference("puntuacion").OrderByValue().LimitToLast(3).OrderByValue().LimitToFirst(3).GetValueAsync()
             .ContinueWith(task =>
             {
                 if (task.IsFaulted)
@@ -36,20 +41,34 @@ void Update(){
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    // Procesar los datos de puntuación...
+                // Procesar los datos de puntuación
+                string scoreString = "";
+                List<DataSnapshot> snapshotList = new List<DataSnapshot>();
+                foreach (var childSnapshot in snapshot.Children)
+                {
+                    snapshotList.Add(childSnapshot);
+                }
+                snapshotList.Reverse();
+                foreach (var childSnapshot in snapshotList)
+                {
+                    string user = childSnapshot.Key;
+                    int score = int.Parse(childSnapshot.Value.ToString());
+                    Debug.Log("Score: " + score);
+                    // Concatenar las puntuaciones en un string
+                        scoreString += "Usuario: " + user + " - Puntuación: " + score + "\n";
+                    }
+                    // Asignar el string de puntuaciones al objeto Text
+                    scoreText.text = scoreString;
                 }
             });
     }
 
      // Método para agregar una puntuación
-    public void AddScore(int userId, int score)
+    public void AddScore(string user, int score)
     {
-        // Crea una referencia a la colección "puntuación" y genera un nuevo ID para el registro
-        DatabaseReference scoreRef = databaseReference.Child("puntuacion").Push();
-        
-        // Establece el valor de la puntuación en la referencia generada
-        scoreRef.SetValueAsync(score);
+        DatabaseReference scoreRef = databaseReference.Child("puntuacion").Child(user);
+    scoreRef.SetValueAsync(score);
 
-        Debug.Log("Puntuación agregada: " + score);
+    Debug.Log("Puntuación agregada: " + score);
     }
 }
