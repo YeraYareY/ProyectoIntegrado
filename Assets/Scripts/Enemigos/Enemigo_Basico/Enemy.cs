@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
     public float rango_ataque;
     public GameObject rango;
     public GameObject Hit;
+
+    public player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -154,7 +157,9 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(){
+        player.puntos+=100;
         Destroy(gameObject);
+        
     }
 
 

@@ -19,6 +19,8 @@ public class shot : MonoBehaviour
     public float balaSpeed = 10f;
     public float balaDestroyDistance = 50f;
     private float tiempo;
+    public player player;
+
     void Start()
     {
         player_pos=GameObject.Find("Player").transform;   
@@ -106,6 +108,7 @@ if (tiempo >= 2)
     }
     
 public void TakeDamage(){
+    player.puntos+=100;
         Destroy(gameObject);
     }
 
