@@ -21,7 +21,7 @@ public class Moneda : MonoBehaviour
             sonido.Play();
             gameManager.sumarPuntos(valor);
             player.puntos+=valor;
-            Invoke("DestruirObjeto", 1);
+            Invoke("DestruirObjeto", 0.1f);
             
             
             //gameManager.sumarPuntos(valor);

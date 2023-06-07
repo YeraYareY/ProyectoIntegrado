@@ -8,7 +8,10 @@ public class derrota : MonoBehaviour
     [SerializeField] public GameObject menuGameOver;
     public GameObject jugador;
     public int vida;
+    public GameObject canvas;
+    public GameObject derrot;
     private void Start(){
+        derrot.SetActive(false);
         vida=jugador.GetComponent<player>().vida;
         menuGameOver.SetActive(false);
         audioSource=GetComponent<AudioSource>();
@@ -16,6 +19,7 @@ public class derrota : MonoBehaviour
     private void Update(){
         vida=jugador.GetComponent<player>().vida;
         if(vida<=0){
+            canvas.SetActive(false);
             GetComponent<player>().enabled = false;
             menuGameOver.SetActive(true);
             audioSource.Play();

@@ -38,7 +38,7 @@ public class player : MonoBehaviour
     public AudioSource saltoSonido;
     public bool saltoReproducido;
     public float attackRadius;
-
+    public GameObject derrot;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +78,7 @@ public class player : MonoBehaviour
         }
        
        if(vida<=0){
+            derrot.SetActive(true);
             particulasMuerte.Play();
             Invoke("OcultarObjeto", 1);
        }
