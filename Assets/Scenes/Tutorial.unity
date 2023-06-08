@@ -2056,6 +2056,7 @@ MonoBehaviour:
   saltoSonido: {fileID: 242127572}
   saltoReproducido: 0
   attackRadius: 4
+  derrot: {fileID: 0}
 --- !u!61 &242127565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2162,7 +2163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242127563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.8, y: -3.03, z: 247.14499}
+  m_LocalPosition: {x: -24.67, y: -2.59, z: 247.14499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495401921}
@@ -2222,6 +2223,7 @@ MonoBehaviour:
   jugador: {fileID: 242127563}
   vida: 0
   canvas: {fileID: 861962035}
+  derrot: {fileID: 1880984967}
 --- !u!82 &242127572
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31482,7 +31484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769990018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.44, y: -2.75, z: 0}
+  m_LocalPosition: {x: 27.92, y: -2.66, z: 0}
   m_LocalScale: {x: 3.2931557, y: 2.326563, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
