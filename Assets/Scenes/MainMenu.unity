@@ -439,6 +439,7 @@ MonoBehaviour:
   database: {fileID: 756223593}
   inputField: {fileID: 156848013}
   usuario: 
+  player: {fileID: 0}
 --- !u!1 &202306034
 GameObject:
   m_ObjectHideFlags: 0

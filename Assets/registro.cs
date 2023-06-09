@@ -8,6 +8,8 @@ public class registro : MonoBehaviour
     public DatabaseManager database;
     public InputField inputField;
     public string usuario;
+    public player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class registro : MonoBehaviour
     public void UpdateUsername(string newUsername)
     {
         usuario = inputField.text;
+        PlayerPrefs.SetString("PlayerName", usuario);
 
     }
 

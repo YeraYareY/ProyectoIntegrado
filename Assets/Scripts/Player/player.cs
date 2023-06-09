@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
+
+    public string nombre;
+
     private Rigidbody2D rb2D;
     public Animator animator;
     //MOVIMIENTO
@@ -21,7 +25,9 @@ public class player : MonoBehaviour
     private bool mirandoDerecha = true;
 
     //Variables Basicas
-    public int vida = 3;
+    public Image vidaImg;
+    public int maxVida=5;
+    public int vida=5;
 
     public int puntos;
     //SALTO
@@ -39,9 +45,13 @@ public class player : MonoBehaviour
     public bool saltoReproducido;
     public float attackRadius;
     public GameObject derrot;
+    
     // Start is called before the first frame update
     void Start()
     {
+        string playerName = PlayerPrefs.GetString("PlayerName");
+        nombre = playerName;
+        Debug.Log("NOMBRE:"+nombre);
         rb2D = GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
         
@@ -62,6 +72,41 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (vida>maxVida){
+            vida=maxVida;
+        }
+        //HUD VIDAS
+        vidaImg.fillAmount = vida / 3f;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemigo");
+            Debug.Log("Número de enemigos encontrados: " + enemies.Length);
+            foreach (GameObject enemy in enemies)
+            {
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                Debug.Log("Distancia al enemigo: " + distanceToEnemy);
+                if (distanceToEnemy <= attackRadius)
+                {
+                    // Aplicar el ataque al enemigo
+                    Enemy enemyScript = enemy.GetComponent<Enemy>();
+                    shot shotEnemyScript = enemy.GetComponent<shot>();
+                    if (enemyScript != null)
+                    {
+                        enemyScript.TakeDamage();
+                    }
+                    if (shotEnemyScript != null)
+                    {
+                        // Llamar a la función para matar al enemigo con el script "shot"
+                        shotEnemyScript.TakeDamage();
+                    }
+                }
+            }
+    movimientoAtacar = true;
+    //animator.SetTrigger("isAttack"); PUEDE SERVIR
+        }
+
         if(!pausado){
             if (Hit_Enemy.hit)
                 {
@@ -98,32 +143,7 @@ public class player : MonoBehaviour
             salto = true;
         }
 
-        if (Input.GetMouseButtonDown(0))
-{
-    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemigo");
-    Debug.Log("Número de enemigos encontrados: " + enemies.Length);
-    foreach (GameObject enemy in enemies)
-    {
-        float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-        Debug.Log("Distancia al enemigo: " + distanceToEnemy);
-        if (distanceToEnemy <= attackRadius)
-        {
-            // Aplicar el ataque al enemigo
-            Enemy enemyScript = enemy.GetComponent<Enemy>();
-            shot shotEnemyScript = enemy.GetComponent<shot>();
-            if (enemyScript != null)
-            {
-                enemyScript.TakeDamage();
-            }
-            if (shotEnemyScript != null)
-        {
-            // Llamar a la función para matar al enemigo con el script "shot"
-            shotEnemyScript.TakeDamage();
-        }
-        }
-    }
-    movimientoAtacar = true;
-}
+
     }
 
     private void Mover(float mover, bool saltar){
@@ -131,8 +151,15 @@ public class player : MonoBehaviour
         rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, velocidadObjetivo, ref velocidad, suavizadoMovimiento);
         // float inputMovimiento = Input.GetAxis("Horizontal");
         // float inputSalto = Input.GetButtonDown("Jump");
-        
-        if(movimientoHorizontal* velocidadMovimiento!=0 && saltar==false){
+       if (movimientoAtacar)
+    {
+        animator.SetBool("isRun", false);
+        animator.SetBool("isWait", false);
+        animator.SetBool("isJump", false);
+        animator.SetBool("isAttack", true);
+        StartCoroutine(PausaAtaque());
+        return;
+    }if(movimientoHorizontal* velocidadMovimiento!=0 && saltar==false){
             animator.SetBool("isRun",true);
             animator.SetBool("isWait",false);
             animator.SetBool("isJump",false);
@@ -150,14 +177,6 @@ public class player : MonoBehaviour
             particulas.Play();
             saltoSonido.Play();
             saltoReproducido=true;
-        }if(movimientoAtacar==true){
-            //Debug.Log("Attca");
-            animator.SetBool("isRun",false);
-            animator.SetBool("isWait",false);
-            animator.SetBool("isJump",false);
-            animator.SetBool("isAttack",true);
-            StartCoroutine(PausaAtaque());
-            
         }
         if(mover > 0 && !mirandoDerecha){
             Girar();

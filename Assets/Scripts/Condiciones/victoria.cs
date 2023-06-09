@@ -5,6 +5,9 @@ using UnityEngine;
 public class victoria: MonoBehaviour
 {
     public GameObject vict;
+    public DatabaseManager databaseManager;
+    public player player;
+
    void OnTriggerEnter2D(Collider2D other)
     {
         // Comprobar si la colisión entra en el trigger
@@ -12,7 +15,7 @@ public class victoria: MonoBehaviour
         {
             Debug.Log("El jugador ha entrado en el trigger.");
             vict.SetActive(true);
-            // Realizar acciones adicionales si es necesario
+            databaseManager.AddScore(player.nombre, player.puntos);
         }
     }
     void Start()
