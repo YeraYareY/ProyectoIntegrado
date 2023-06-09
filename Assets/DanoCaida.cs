@@ -25,7 +25,6 @@ public class DanoCaida : MonoBehaviour
         {
             jugador.GetComponent<player>().vida -= 3;
             Debug.Log(this.vida);   
-            // Aquí puedes agregar cualquier otra lógica que necesites
         }
     }
 }
