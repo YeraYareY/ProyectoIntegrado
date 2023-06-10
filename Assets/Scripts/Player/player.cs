@@ -12,7 +12,7 @@ public class player : MonoBehaviour
     public Animator animator;
     //MOVIMIENTO
     private float movimientoHorizontal = 0f;
-    private float velocidadMovimiento = 500f; 
+    public float velocidadMovimiento = 500f; 
 
     private float movimientoSalto=0f;
     private bool movimientoAtacar;

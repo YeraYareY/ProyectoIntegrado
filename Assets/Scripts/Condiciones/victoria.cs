@@ -14,12 +14,21 @@ public class victoria: MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("El jugador ha entrado en el trigger.");
-            vict.SetActive(true);
             databaseManager.AddScore(player.nombre, player.puntos);
+            //Pausa();
+            databaseManager.ReadScores();
+            
+            vict.SetActive(true);
+            
         }
     }
     void Start()
     {
       vict.SetActive(false);
     }
+
+    IEnumerator Pausa()
+{
+    yield return new WaitForSeconds(5);
+}
 }

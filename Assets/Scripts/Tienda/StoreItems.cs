@@ -5,10 +5,12 @@ using TMPro;
 
 public class StoreItems : MonoBehaviour
 {
-   public string itenName;
+   public string itemName;
    public int itemSellPrice;
    public int itemBuyPrice;
-   public static int healthToGive=1; 
+   public static int healthToGive=1;
+   public static float speedBoost=100f;
+   public static float jumpBoost=100f;
    TextMeshProUGUI buyPriceText;
 
    public player player;
@@ -20,12 +22,27 @@ public class StoreItems : MonoBehaviour
    }
 
    public void BuyItem(){
-      Debug.Log("HOLA");
-      if(itemBuyPrice<=player.puntos){
+      if(itemName=="Manzana"){
+         if(itemBuyPrice<=player.puntos){
          player.puntos-=itemSellPrice;
          player.vida+=healthToGive;
          Debug.Log("Vidas:"+player.vida);
+         Destroy(gameObject);
+         }
+      }else if(itemName=="Berenjena"){
+         if(itemBuyPrice<=player.puntos){
+         player.puntos-=itemSellPrice;
+         player.velocidadMovimiento+=speedBoost;
+         Destroy(gameObject);
+         }
+      }else if(itemName=="Pineapple"){
+         if(itemBuyPrice<=player.puntos){
+         player.puntos-=itemSellPrice;
+         player.fuerzaSalto+=jumpBoost;
+         Destroy(gameObject);
+         }
       }
+      
    }
 
 }
