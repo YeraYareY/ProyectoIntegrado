@@ -42,7 +42,6 @@ public class Letras : MonoBehaviour
 
          if(variableBooleana){
             textoMesh.text =texto;
-            Debug.Log(texto);
         }
     }
  

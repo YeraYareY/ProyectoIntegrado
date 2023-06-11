@@ -6,7 +6,7 @@ public class Restart : MonoBehaviour
 {
     
     public void Reiniciar(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Tutorial");
     }
     public void MenuInicial(string nombre){
         SceneManager.LoadScene(nombre);

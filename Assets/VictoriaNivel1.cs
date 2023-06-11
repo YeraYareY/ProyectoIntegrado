@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class VictoriaNivel1 : MonoBehaviour
 {
+
+    public player player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,8 @@ public class VictoriaNivel1 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col){
         if(col.CompareTag("Player")){
+            int puntos= player.puntos;
+            PlayerPrefs.SetInt("PlayerPoints", puntos);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }

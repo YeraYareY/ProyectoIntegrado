@@ -6,6 +6,9 @@ public class Hit_Enemy : MonoBehaviour
 {
     public static bool hit;
     public bool pausado;
+    public player player;
+    public ParticleSystem particulas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +18,9 @@ public class Hit_Enemy : MonoBehaviour
     {
         if (colision.CompareTag("Player"))
         {
-            Debug.Log(pausado);
+
             if(!pausado){
+                player.vida-=1;
                 hit=true;
             }
      
@@ -33,5 +37,8 @@ public class Hit_Enemy : MonoBehaviour
     void Update()
     {
      pausado=player.pausado;
+     if(player.vida<=0){
+        particulas.Play();
+     }
     }
 }

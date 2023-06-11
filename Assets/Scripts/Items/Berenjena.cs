@@ -12,7 +12,6 @@ public class Berenjena : MonoBehaviour
             if(collision.name == "Player"){
                 collision.GetComponent<player>().velocidadMovimiento += speedBoost;
                 float speed=collision.GetComponent<player>().velocidadMovimiento;
-                Debug.Log("Velocidad: "+speed);
                 Destroy(gameObject);
             }
         }
@@ -20,9 +19,7 @@ public class Berenjena : MonoBehaviour
 
     public void OnButtonClick()
     {
-         Debug.Log("AAAAAA");
         player.velocidadMovimiento+=10f;
-        Debug.Log("Velocidaddd: "+player.velocidadMovimiento);
     }
 
 }

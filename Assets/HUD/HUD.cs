@@ -28,7 +28,6 @@ public class HUD : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No se pudo convertir el texto a un número entero.");
         }
     }
 }

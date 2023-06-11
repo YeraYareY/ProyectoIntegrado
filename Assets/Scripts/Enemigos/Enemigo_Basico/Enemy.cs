@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public GameObject Hit;
 
     public player player;
+    public ParticleSystem particulas;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col){
         if(col.CompareTag("Player")){
+             player.vida-=1;
              animator.SetBool("atacar",true);
              animator.SetBool("moverse",false);
         }
@@ -153,6 +155,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player.vida<=0){
+            particulas.Play();
+        }
         Comportamiento();
     }
 

@@ -24,7 +24,6 @@ public class DanoCaida : MonoBehaviour
         if (posicionJugador.y < -distanciaMaxima)
         {
             jugador.GetComponent<player>().vida -= 3;
-            Debug.Log(this.vida);   
         }
     }
 }

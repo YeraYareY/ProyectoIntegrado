@@ -26,7 +26,6 @@ public class StoreItems : MonoBehaviour
          if(itemBuyPrice<=player.puntos){
          player.puntos-=itemSellPrice;
          player.vida+=healthToGive;
-         Debug.Log("Vidas:"+player.vida);
          Destroy(gameObject);
          }
       }else if(itemName=="Berenjena"){

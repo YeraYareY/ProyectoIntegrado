@@ -2077,8 +2077,8 @@ MonoBehaviour:
   particulas: {fileID: 651144238}
   particulasMuerte: {fileID: 1064691795}
   vidaImg: {fileID: 696082529}
-  maxVida: 3
-  vida: 3
+  maxVida: 6
+  vida: 6
   puntos: 0
   fuerzaSalto: 400
   queEsSuelo:
@@ -2092,6 +2092,9 @@ MonoBehaviour:
   saltoReproducido: 0
   attackRadius: 4
   derrot: {fileID: 0}
+  boxCollider: {fileID: 0}
+  collider2D: {fileID: 0}
+  spriteRender: {fileID: 0}
 --- !u!61 &242127565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2241,6 +2244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausado: 0
+  player: {fileID: 0}
+  particulas: {fileID: 0}
 --- !u!114 &242127571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4861,7 +4866,6 @@ GameObject:
   m_Component:
   - component: {fileID: 448138829}
   - component: {fileID: 448138832}
-  - component: {fileID: 448138831}
   - component: {fileID: 448138830}
   m_Layer: 0
   m_Name: Hit
@@ -4910,19 +4914,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.098743, y: 1.1549115}
   m_EdgeRadius: 0
---- !u!114 &448138831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448138828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c016f481f5df7e488dd6d0b2bfe7df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausado: 0
 --- !u!114 &448138832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4936,6 +4927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausado: 0
+  player: {fileID: 242127564}
+  particulas: {fileID: 1064691795}
 --- !u!1 &449954278
 GameObject:
   m_ObjectHideFlags: 0
@@ -18067,7 +18060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &669523814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19292,6 +19285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2e247976e46514c8eaa02240706db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 242127564}
 --- !u!1 &816162239
 GameObject:
   m_ObjectHideFlags: 0
@@ -29140,6 +29134,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1346535699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1346535701}
+  - component: {fileID: 1346535700}
+  m_Layer: 0
+  m_Name: Inicio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1346535700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346535699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e650d01e81fcbea4a92830318bfe3b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 242127564}
+--- !u!4 &1346535701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346535699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.240002, y: 52.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361957982
 GameObject:
   m_ObjectHideFlags: 0
@@ -30244,6 +30282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausado: 0
+  player: {fileID: 0}
+  particulas: {fileID: 0}
 --- !u!1 &1521872770
 GameObject:
   m_ObjectHideFlags: 0
@@ -31762,6 +31802,7 @@ MonoBehaviour:
   rango: {fileID: 1163998037}
   Hit: {fileID: 448138828}
   player: {fileID: 242127564}
+  particulas: {fileID: 1064691795}
 --- !u!95 &1698982541
 Animator:
   serializedVersion: 5
@@ -34647,7 +34688,7 @@ MonoBehaviour:
   itemInStore: []
   player: {fileID: 242127564}
   puntuacionHUD: {fileID: 1085420474}
-  vidaHUD: {fileID: 669523815}
+  vidaHUD: {fileID: 696082529}
 --- !u!61 &2036117147
 BoxCollider2D:
   m_ObjectHideFlags: 0

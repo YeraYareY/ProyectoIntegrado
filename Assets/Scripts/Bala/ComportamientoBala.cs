@@ -22,7 +22,6 @@ public class ComportamientoBala : MonoBehaviour
     void OnTriggerEnter2D(Collider2D colision)
     {
         if(colision.CompareTag("Player")){
-            Debug.Log("COLISION");
             Destroy(gameObject);
         }
     }

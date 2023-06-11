@@ -21,13 +21,14 @@ public class player : MonoBehaviour
     public ParticleSystem particulas;
     public ParticleSystem particulasMuerte;
     private Vector3 velocidad = Vector3.zero;
+    
 
     private bool mirandoDerecha = true;
 
     //Variables Basicas
     public Image vidaImg;
-    public int maxVida=5;
-    public int vida=5;
+    public int maxVida=6;
+    public int vida=6;
 
     public int puntos;
     //SALTO
@@ -45,15 +46,23 @@ public class player : MonoBehaviour
     public bool saltoReproducido;
     public float attackRadius;
     public GameObject derrot;
+    public BoxCollider2D boxCollider;
+    public Collider2D collider2D;
+    public SpriteRenderer spriteRender;
     
     // Start is called before the first frame update
     void Start()
     {
         string playerName = PlayerPrefs.GetString("PlayerName");
+        int playerPoints = PlayerPrefs.GetInt("PlayerPoints");
+        puntos=playerPoints;
         nombre = playerName;
-        Debug.Log("NOMBRE:"+nombre);
         rb2D = GetComponent<Rigidbody2D>();
+        boxCollider= GetComponent<BoxCollider2D>();
+        collider2D= GetComponent<Collider2D>();
+        spriteRender = GetComponent<SpriteRenderer>();
         animator=GetComponent<Animator>();
+        vida=6;
         
     }
   
@@ -77,16 +86,15 @@ public class player : MonoBehaviour
             vida=maxVida;
         }
         //HUD VIDAS
-        vidaImg.fillAmount = vida / 3f;
+        vidaImg.fillAmount = vida / 6f;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemigo");
-            Debug.Log("Número de enemigos encontrados: " + enemies.Length);
+
             foreach (GameObject enemy in enemies)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                Debug.Log("Distancia al enemigo: " + distanceToEnemy);
                 if (distanceToEnemy <= attackRadius)
                 {
                     // Aplicar el ataque al enemigo
@@ -110,13 +118,11 @@ public class player : MonoBehaviour
         if(!pausado){
             if (Hit_Enemy.hit)
                 {
-                    
-                    vida--;
+                
                     if(vida>=1){
                     animator.SetTrigger("Golpe");
 
                     }
-                    Debug.Log(vida);
                     Hit_Enemy.hit = false;
                     StartCoroutine(Pausar()); // Restablecer la variable hit de Hit_Enemy a false
                 }
@@ -125,6 +131,7 @@ public class player : MonoBehaviour
        if(vida<=0){
             derrot.SetActive(true);
             particulasMuerte.Play();
+            puntos=0;
             Invoke("OcultarObjeto", 1);
        }
 
@@ -192,10 +199,10 @@ public class player : MonoBehaviour
 
 IEnumerator PausaAtaque()
 {
-    Debug.Log("Pausa de ataque...");
+
     yield return new WaitForSeconds(0.8f);
     movimientoAtacar=false;
-    Debug.Log("La pausa ha terminado.");
+
 }
 
     private void Girar(){

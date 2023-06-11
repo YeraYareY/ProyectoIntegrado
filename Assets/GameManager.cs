@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public void sumarPuntos(int puntosASumar){
         player.puntos+=puntosASumar;
         
-        Debug.Log(player.puntos);
     }
     // Update is called once per frame
     void Update(){

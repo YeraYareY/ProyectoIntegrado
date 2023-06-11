@@ -26,10 +26,10 @@ public class Interaccion : MonoBehaviour
    
     void OnTriggerEnter2D(Collider2D colision) {
         if (colision.CompareTag("Player")) {
-            Debug.Log("Entro");
             enColision = true;
             mensaje = "Presiona 'E' para comprar";   
-            textoMensaje.text=player.puntos+"";         
+            textoMensaje.text=player.puntos+"";   
+            
         }else{
             panelTienda.SetActive(false);
         }
@@ -37,16 +37,11 @@ public class Interaccion : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D colision) {
         if (colision.CompareTag("Player")) {
-            Debug.Log("Salgo");
             enColision = false;
             mensaje = "";
             panelTienda.SetActive(false);
             puntuacionHUD.enabled=true;
-            vidaHUD.enabled=true;
-            foreach (Transform child in vidaHUD.transform)
-            {
-                child.gameObject.SetActive(true);
-            }
+        
         }
     }
 
@@ -57,15 +52,9 @@ public class Interaccion : MonoBehaviour
         textoMensaje.text=player.puntos+""; 
     
         if(enColision){
-               if (Input.GetKeyDown(KeyCode.E)){
+               if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire3")){
                     panelTienda.SetActive(true);
-                    puntuacionHUD.enabled=false;
-                    vidaHUD.enabled=false;
-
-                    foreach (Transform child in vidaHUD.transform)
-                    {
-                        child.gameObject.SetActive(false);
-                    }
+                    puntuacionHUD.enabled=false;  
                 }
         }
   

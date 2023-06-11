@@ -12,7 +12,7 @@ public class Manzana : MonoBehaviour
             if(collision.name == "Player"){
                 collision.GetComponent<player>().vida += healthToGive;
                 int vidas=collision.GetComponent<player>().vida;
-                Debug.Log("Vidas: "+vidas);
+
                 Destroy(gameObject);
             }
         }
@@ -20,9 +20,7 @@ public class Manzana : MonoBehaviour
 
     public void OnButtonClick()
     {
-         Debug.Log("AAAAAA");
         player.vida+=1;
-        Debug.Log("Vidas: "+player.vida);
     }
 
 }

@@ -43,7 +43,6 @@ void Update(){
                 {
                     string user = childSnapshot.Key;
                     int score = int.Parse(childSnapshot.Value.ToString());
-                    Debug.Log("Score: " + score);
                     // Concatenar las puntuaciones en un string
                         scoreString += "Usuario: " + user + " - Puntuación: " + score + "\n";
                     }
@@ -62,8 +61,6 @@ void Update(){
 
         DatabaseReference scoreRef = databaseReference.Child("puntuacion").Child(user);
         scoreRef.SetValueAsync(score);
-        ReadScores();
-        Debug.Log("Puntuación agregada: " + score);
     }
     
    
@@ -74,7 +71,6 @@ void Update(){
         DatabaseReference userRef = databaseReference.Child("usuarios").Child(userId);
         userRef.SetValueAsync(newName);
 
-        Debug.Log("Nombre de usuario editado para el ID: " + userId);
     }
 
     public void borrarPuntuaciones(){
@@ -83,11 +79,11 @@ void Update(){
         {
             if (task.IsFaulted)
             {
-            Debug.Log("Fallo");
+
             }
             else if (task.IsCompleted)
             {
-                Debug.Log("Puntuaciones borradas correctamente.");
+
             }
         });
     }

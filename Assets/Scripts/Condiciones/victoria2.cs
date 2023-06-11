@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class victoria: MonoBehaviour
+public class victoria2 : MonoBehaviour
 {
     public GameObject vict;
     public DatabaseManager databaseManager;
