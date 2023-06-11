@@ -14,7 +14,6 @@ public class victoria: MonoBehaviour
         if (other.CompareTag("Player"))
         {
             databaseManager.AddScore(player.nombre, player.puntos);
-            //Pausa();
             databaseManager.ReadScores();
             
             vict.SetActive(true);
@@ -26,8 +25,5 @@ public class victoria: MonoBehaviour
       vict.SetActive(false);
     }
 
-    IEnumerator Pausa()
-{
-    yield return new WaitForSeconds(5);
-}
+  
 }

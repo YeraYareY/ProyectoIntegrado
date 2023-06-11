@@ -22,6 +22,7 @@ public class Hit_Enemy : MonoBehaviour
             if(!pausado){
                 player.vida-=1;
                 hit=true;
+                Pausar();
             }
      
         }
@@ -34,6 +35,14 @@ public class Hit_Enemy : MonoBehaviour
    
     
     // Update is called once per frame
+    
+    IEnumerator Pausar()
+    {
+        pausado=true;
+        yield return new WaitForSeconds(2);
+        pausado=false;
+    }
+
     void Update()
     {
      pausado=player.pausado;

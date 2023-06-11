@@ -27,8 +27,8 @@ public class player : MonoBehaviour
 
     //Variables Basicas
     public Image vidaImg;
-    public int maxVida=6;
-    public int vida=6;
+    public int maxVida=3;
+    public int vida=3;
 
     public int puntos;
     //SALTO
@@ -62,7 +62,7 @@ public class player : MonoBehaviour
         collider2D= GetComponent<Collider2D>();
         spriteRender = GetComponent<SpriteRenderer>();
         animator=GetComponent<Animator>();
-        vida=6;
+        vida=3;
         
     }
   
@@ -86,7 +86,7 @@ public class player : MonoBehaviour
             vida=maxVida;
         }
         //HUD VIDAS
-        vidaImg.fillAmount = vida / 6f;
+        vidaImg.fillAmount = vida / 3f;
 
         if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
         {

@@ -8,7 +8,7 @@ public class StoreItems : MonoBehaviour
    public string itemName;
    public int itemSellPrice;
    public int itemBuyPrice;
-   public static int healthToGive=1;
+   public static int vidaSumar=2;
    public static float speedBoost=100f;
    public static float jumpBoost=100f;
    TextMeshProUGUI buyPriceText;
@@ -25,7 +25,7 @@ public class StoreItems : MonoBehaviour
       if(itemName=="Manzana"){
          if(itemBuyPrice<=player.puntos){
          player.puntos-=itemSellPrice;
-         player.vida+=healthToGive;
+         player.vida+=vidaSumar;
          Destroy(gameObject);
          }
       }else if(itemName=="Berenjena"){

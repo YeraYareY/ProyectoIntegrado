@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col){
         if(col.CompareTag("Player")){
-             player.vida-=1;
              animator.SetBool("atacar",true);
              animator.SetBool("moverse",false);
         }
